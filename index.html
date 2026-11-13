@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stackly | Online Fashion &amp; Clothing Boutique</title>
+<meta name="description" content="Stackly - a modern online fashion boutique.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+<div id="pre"><div class="pre-in"><i class="fa-solid fa-shirt"></i><span class="serif">Stackly</span><b id="cnt">0</b><div class="bar-l"><i id="barf"></i></div></div></div>
+
+<header id="hd">
+  <div class="wrap bar">
+    <a href="#home" class="logo" data-go aria-label="Stackly home"><img class="lg-d" src="images/logo-dark.webp" alt="Stackly" width="130" height="40"><img class="lg-l" src="images/logo-light.webp" alt="" width="130" height="40"></a>
+    <nav id="nav">
+      <div class="links">
+        <a class="l act" href="#home" data-go>Home</a>
+        <a class="l" href="#categories" data-go>Collections</a>
+        <a class="l" href="#trending" data-go>Shop</a>
+        <a class="l" href="#about" data-go>About</a>
+        <a class="l" href="#contact" data-go>Contact</a>
+      </div>
+      <button class="btn" id="login"><i class="fa-regular fa-user"></i>Login</button>
+    </nav>
+    <div class="acts">
+      <button class="ib" id="wb" aria-label="Wishlist"><i class="fa-regular fa-heart"></i><b id="wc">0</b></button>
+      <button class="ib" id="cb" aria-label="Shopping bag"><i class="fa-solid fa-bag-shopping"></i><b id="cc">0</b></button>
+      <button class="burger" id="burger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div class="hero-bg"><img src="images/promo-tailoring.webp" alt=""></div>
+  <div class="wrap hero-in">
+    <div class="hero-t">
+      <span class="eyebrow"><i></i>Autumn / Winter 2026</span>
+      <h1 aria-label="Stack your style."><span class="hl">Stack your</span><span class="hl"><em>style.</em></span></h1>
+      <p>Layer textures, colours and silhouettes into a wardrobe that is unmistakably yours. Explore the new season, curated live from our catalogue.</p>
+      <div class="cta"><a href="html/404.html" class="btn mag">Shop the edit <i class="fa-solid fa-arrow-right"></i></a><a href="html/404.html" class="btn out mag">Collections</a></div>
+      <ul class="hf"><li><i class="fa-solid fa-truck-fast"></i>Free shipping over $150</li><li><i class="fa-solid fa-rotate-left"></i>30-day returns</li><li><i class="fa-solid fa-shield-halved"></i>Secure checkout</li></ul>
+    </div>
+    <div class="hero-s">
+      <div class="stage" id="stage"><div class="cards" id="cards"><article class="cd"><img src="images/hero-main.webp" alt="Blue coat look" draggable="false"><span class="no serif">01</span></article><article class="cd"><img src="images/error-fashion.webp" alt="Leather jacket look" draggable="false"><span class="no serif">02</span></article><article class="cd"><img src="images/hero-secondary.webp" alt="Yellow tracksuit look" draggable="false"><span class="no serif">03</span></article><article class="cd"><img src="images/cat-dresses.webp" alt="Red dress look" draggable="false"><span class="no serif">04</span></article></div></div>
+      <div class="look">
+        <div class="lk-n"><b class="serif" id="li">01</b><span>/ 04</span></div>
+        <div class="lk-t"><div class="mask"><small id="lc">Outerwear</small></div><div class="mask"><h3 class="serif" id="lt">Coats &amp; layers</h3></div></div>
+        <div class="lk-a"><button id="lp" aria-label="Previous look"><i class="fa-solid fa-arrow-left"></i></button><button id="lnx" aria-label="Next look"><i class="fa-solid fa-arrow-right"></i></button></div>
+        <div class="lk-bar"><i id="lbar"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mq"><div class="t" id="mq"><span>New season</span><i class="fa-solid fa-star"></i><span>Handpicked styles</span><i class="fa-solid fa-star"></i><span>Free returns</span><i class="fa-solid fa-star"></i><span>Dresses &amp; tailoring</span><i class="fa-solid fa-star"></i><span>Bags &amp; eyewear</span><i class="fa-solid fa-star"></i></div></div>
+
+<section id="categories">
+  <div class="wrap">
+    <span class="eyebrow">Featured Categories</span>
+    <h2 class="rv">Shop by <em>mood</em></h2>
+    <div class="mosaic" id="mosaic"></div>
+  </div>
+</section>
+
+<section class="dark" id="offers">
+  <div class="wrap">
+    <span class="eyebrow">Promotional Offers</span>
+    <h2 class="rv">Offers worth <em>wearing</em></h2>
+    <div class="offers">
+      <article class="offer" data-aos="fade-right"><img src="images/promo-wardrobe.webp" alt="Wardrobe"><div><div class="pc serif">20% off</div><p>Refresh your wardrobe on orders over $100.</p><button class="chipc" data-code="STYLE20"><i class="fa-regular fa-copy"></i> STYLE20</button></div></article>
+      <article class="offer" data-aos="fade-left"><img src="images/promo-tailoring.webp" alt="Tailoring"><div><div class="pc serif">10% off</div><p>The tailored edit, on every order.</p><button class="chipc" data-code="SAVE10"><i class="fa-regular fa-copy"></i> SAVE10</button></div></article>
+      <article class="offer" data-aos="fade-left" data-aos-delay="120"><img src="images/promo-shoes.webp" alt="Style"><div><div class="pc serif">Free ship</div><p>Delivery on us, no minimum.</p><button class="chipc" data-code="FREESHIP"><i class="fa-regular fa-copy"></i> FREESHIP</button></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="arrivals">
+  <div class="wrap">
+    <div class="sec-h"><div><span class="eyebrow">New Arrivals</span><h2 class="rv">Just <em>landed</em></h2></div>
+      <div class="arrows"><button id="prev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button><button id="next" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button></div></div>
+  </div>
+  <div class="rail" id="rail"></div>
+</section>
+
+<section class="sandbg" id="trending">
+  <div class="wrap">
+    <span class="eyebrow">Trending Products</span>
+    <h2 class="rv">What everyone is <em>wearing</em></h2>
+    <div class="tools">
+      <label class="search"><i class="fa-solid fa-magnifying-glass"></i><input id="q" type="search" placeholder="Search products by name" aria-label="Search"></label>
+      <select id="sort" aria-label="Sort"><option value="">Sort: Top rated</option><option value="pa">Price: low to high</option><option value="pd">Price: high to low</option><option value="rt">Rating: high to low</option></select>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+    <div class="more"><button class="btn" id="more">Load more <i class="fa-solid fa-plus"></i></button></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <div class="ab-img" data-aos="zoom-in"><img src="images/about-atelier.webp" alt="Atelier"></div>
+    <div data-aos="fade-up"><span class="eyebrow">About Stackly</span><h2>Built in layers, <em>worn your way.</em></h2>
+      <p>Stackly started with one idea: a wardrobe should be assembled, not bought in bulk. We pair timeless cuts with seasonal colour so every piece layers with the next.</p>
+      <ul class="ticks"><li><i class="fa-solid fa-check"></i> Curated by stylists</li><li><i class="fa-solid fa-check"></i> 30-day easy returns</li><li><i class="fa-solid fa-check"></i> Secure checkout</li></ul></div>
+  </div>
+</section>
+
+<section class="dark" id="reviews">
+  <div class="wrap">
+    <span class="eyebrow">Customer Testimonials</span>
+    <h2 class="rv">Loved by <em>our people</em></h2>
+    <div class="reviews">
+      <blockquote data-aos="fade-up"><div class="st"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>The dress fit perfectly and arrived in two days. The checkout felt effortless.</p><footer><img src="images/avatar-1.webp" alt="Ananya R."><div><b>Ananya R.</b><small>Chennai</small></div></footer></blockquote>
+      <blockquote data-aos="fade-up" data-aos-delay="100"><div class="st"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>Finally a boutique that gets tailoring. My shirts have never looked sharper.</p><footer><img src="images/avatar-2.webp" alt="Marco D."><div><b>Marco D.</b><small>Milan</small></div></footer></blockquote>
+      <blockquote data-aos="fade-up" data-aos-delay="200"><div class="st"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div><p>Beautiful bags and honest prices. The wishlist feature is my favourite part.</p><footer><img src="images/avatar-3.webp" alt="Lena K."><div><b>Lena K.</b><small>Berlin</small></div></footer></blockquote>
+      <blockquote data-aos="fade-up" data-aos-delay="300"><div class="st"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p>Great quality, quick support and returns were painless. Highly recommended.</p><footer><img src="images/avatar-4.webp" alt="Rohan P."><div><b>Rohan P.</b><small>Madurai</small></div></footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="news" id="newsletter">
+  <div class="wrap nl">
+    <img src="images/newsletter-editorial.webp" alt="Editorial" data-aos="fade-right">
+    <div data-aos="fade-left"><span class="eyebrow">Newsletter</span><h2>Get 10% off your <em>first order</em></h2>
+      <p>Join the Stackly letter for early drops and style notes.</p>
+      <form id="nlf" novalidate><input id="nle" type="email" placeholder="Your email address" aria-label="Email"><button class="btn" type="submit">Subscribe</button></form><small id="nlm"></small></div>
+  </div>
+</section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="trust">
+      <div><i class="fa-solid fa-truck-fast"></i><b>Free shipping</b><span>On orders over $150</span></div>
+      <div><i class="fa-solid fa-rotate-left"></i><b>Easy returns</b><span>30-day return window</span></div>
+      <div><i class="fa-solid fa-shield-halved"></i><b>Secure payment</b><span>Encrypted checkout</span></div>
+      <div><i class="fa-solid fa-headset"></i><b>Style support</b><span>Mon to Sat, 9am - 8pm</span></div>
+    </div>
+    <div class="fgrid">
+      <div class="fb"><a href="#home" class="logo" data-go aria-label="Stackly home"><img src="images/logo-light.webp" alt="Stackly" width="130" height="40"></a><p>Modern fashion, layered your way. Curated pieces for every season and every mood.</p>
+        <div class="soc"><a href="html/404.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="html/404.html" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="html/404.html" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a><a href="html/404.html" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a></div></div>
+      <div><h4>Explore</h4><a href="#home" data-go>Home</a><a href="#categories" data-go>Collections</a><a href="#trending" data-go>Shop</a><a href="#about" data-go>About</a><a href="#contact" data-go>Contact</a></div>
+      <div><h4>Shop</h4><a href="html/404.html">Dresses</a><a href="html/404.html">Shirts</a><a href="html/404.html">Shoes</a><a href="html/404.html">Bags</a><a href="html/404.html">Jewellery</a><a href="html/404.html">Eyewear</a></div>
+      <div class="fc"><h4>Contact</h4><span><i class="fa-solid fa-location-dot"></i> MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span><span><i class="fa-solid fa-envelope"></i> <a href="html/404.html">info@thestackly.com</a></span><span><i class="fa-solid fa-phone"></i> <a href="html/404.html">+9746345267</a></span></div>
+    </div>
+    <div class="fbot">
+      <span>&copy; 2026 Stackly. All rights reserved.</span>
+      <div class="pay"><i class="fa-brands fa-cc-visa"></i><i class="fa-brands fa-cc-mastercard"></i><i class="fa-brands fa-cc-paypal"></i><i class="fa-brands fa-cc-amex"></i><i class="fa-brands fa-apple-pay"></i></div>
+      <div class="pol"><a href="html/404.html">Privacy</a><a href="html/404.html">Terms</a><a href="html/404.html">Shipping</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer" data-lenis-prevent><div class="dh"><h3 id="dt">Your bag</h3><button class="x" data-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button></div><div class="db" id="db"></div><div class="df" id="df"></div></aside>
+<div class="modal" id="modal"><div class="mbox" data-lenis-prevent><button class="x" data-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button><div id="mb"></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="js/api.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>
