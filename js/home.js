@@ -79,7 +79,7 @@ function drawCart() {
   const items = Object.values(cart), t = totals();
   $('#dt').textContent = 'Your bag';
   $('#db').innerHTML = items.length ? items.map(i => `<div class="ci"><img src="${i.img}" alt="${i.title}" onerror="this.src='${PH}'"><div><h4>${i.title}</h4><small>${money(i.price)}</small><div class="qt"><button data-q="${i.id}" data-d="-1" aria-label="Decrease"><i class="fa-solid fa-minus"></i></button><b>${i.qty}</b><button data-q="${i.id}" data-d="1" aria-label="Increase"><i class="fa-solid fa-plus"></i></button></div></div><button class="rm" data-rm="${i.id}" aria-label="Remove"><i class="fa-regular fa-trash-can"></i></button></div>`).join('') : `<div class="empty"><i class="fa-solid fa-bag-shopping"></i><p>Your bag is empty.</p></div>`;
-  $('#df').innerHTML = items.length ? `<div class="cp"><input id="cin" placeholder="Coupon code" value="${coupon || ''}"><button class="btn" id="capply">Apply</button></div><div class="tr"><span>Subtotal</span><b>${money(t.sub)}</b></div>${t.disc ? `<div class="tr"><span>Discount (${coupon})</span><b>-${money(t.disc)}</b></div>` : ''}<div class="tr"><span>Shipping</span><b>${t.ship ? money(t.ship) : 'Free'}</b></div><div class="tr t"><span>Total</span><span>${money(t.total)}</span></div><button class="btn" id="checkout">Checkout <i class="fa-solid fa-arrow-right"></i></button>` : '';
+  $('#df').innerHTML = items.length ? `<div class="cp"><input id="cin" placeholder="Coupon code" maxlength="15" autocomplete="off" aria-describedby="cerr" value="${coupon || ''}"><button class="btn" id="capply">Apply</button>${coupon ? '<button class="btn cp-rm" id="crm" aria-label="Remove coupon">Remove</button>' : ''}</div><p class="cerr" id="cerr" role="alert" aria-live="polite"></p><div class="tr"><span>Subtotal</span><b>${money(t.sub)}</b></div>${t.disc ? `<div class="tr"><span>Discount (${coupon})</span><b>-${money(t.disc)}</b></div>` : ''}<div class="tr"><span>Shipping</span><b>${t.ship ? money(t.ship) : 'Free'}</b></div><div class="tr t"><span>Total</span><span>${money(t.total)}</span></div><button class="btn" id="checkout">Checkout <i class="fa-solid fa-arrow-right"></i></button>` : '';
 }
 function drawWish() {
   const items = wish.map(find).filter(Boolean);
@@ -107,6 +107,35 @@ function checkout() {
   $('#modal').classList.add('on'); $('#ov').classList.add('on');
 }
 
+/* ---------- coupon validation ---------- */
+function couponMsg(text, type) {
+  const m = $('#cerr'), i = $('#cin');
+  if (m) { m.textContent = text; m.className = 'cerr ' + (type || ''); }
+  if (i) {
+    i.classList.toggle('bad', type === 'err');
+    if (type === 'err') { i.classList.remove('shake'); void i.offsetWidth; i.classList.add('shake'); i.focus(); }
+  }
+}
+function validateCoupon(raw) {
+  const v = String(raw || '').trim().toUpperCase();
+  if (!v) return { ok: false, msg: 'Please enter a coupon code' };
+  if (v.length < 3) return { ok: false, msg: 'Coupon code is too short' };
+  if (!/^[A-Z0-9]+$/.test(v)) return { ok: false, msg: 'Use letters and numbers only, no spaces or symbols' };
+  if (!Object.keys(cart).length) return { ok: false, msg: 'Your bag is empty. Add items before applying a coupon' };
+  const c = COUPONS[v];
+  if (!c) return { ok: false, msg: '"' + v + '" is not a valid coupon code' };
+  if (coupon === v) return { ok: false, msg: v + ' is already applied' };
+  const sub = totals().sub;
+  if (c.min && sub < c.min) return { ok: false, msg: 'Spend ' + money(c.min) + ' or more to use ' + v + ' (add ' + money(c.min - sub) + ' more)' };
+  return { ok: true, code: v };
+}
+function applyCoupon(raw) {
+  const r = validateCoupon(raw);
+  if (!r.ok) { couponMsg(r.msg, 'err'); toast(r.msg); return false; }
+  coupon = r.code; sync(); couponMsg(r.code + ' applied successfully', 'ok'); toast(r.code + ' applied');
+  return true;
+}
+
 /* ---------- events ---------- */
 document.addEventListener('click', e => {
   const t = e.target, $c = s => t.closest(s);
@@ -117,7 +146,7 @@ document.addEventListener('click', e => {
   if (el = $c('[data-q]')) { const i = cart[el.dataset.q]; i.qty += +el.dataset.d; if (i.qty < 1) delete cart[el.dataset.q]; return sync(); }
   if (el = $c('[data-rm]')) { delete cart[el.dataset.rm]; return sync(); }
   if (el = $c('[data-th]')) { $('#mi').src = el.dataset.th; return; }
-  if (el = $c('[data-code]')) { const c = el.dataset.code; navigator.clipboard?.writeText(c).catch(() => {}); coupon = c; sync(); return toast('Code ' + c + ' copied and applied'); }
+  if (el = $c('[data-code]')) { const c = el.dataset.code; navigator.clipboard?.writeText(c).catch(() => {}); const r = validateCoupon(c); if (r.ok) { coupon = c; sync(); return toast('Code ' + c + ' copied and applied'); } return toast(r.msg.includes('already') ? 'Code ' + c + ' copied, already applied' : 'Code ' + c + ' copied. ' + r.msg); }
   if (el = $c('[data-cat]')) { e.preventDefault(); st = { ...st, cat: el.dataset.cat, n: 8 }; renderChips(); renderGrid(); return lenis.scrollTo('#trending', { offset: -70 }); }
   if (el = $c('[data-chip]')) { st = { ...st, cat: el.dataset.chip, n: 8 }; renderChips(); return renderGrid(); }
   if (el = $c('[data-go]')) { e.preventDefault(); closeMenu(); return goTo(el.getAttribute('href')); }
@@ -128,11 +157,12 @@ document.addEventListener('click', e => {
   if ($c('#retry')) return load();
   if ($c('#checkout')) return checkout();
   if ($c('#login')) { closeMenu(); return toast('Login is coming soon'); }
-  if ($c('#capply')) { const v = $('#cin').value.trim().toUpperCase(), c = COUPONS[v]; if (!v) { coupon = null; sync(); return toast('Coupon removed'); } if (!c) return toast('Invalid coupon code'); if (c.min && totals().sub < c.min) return toast('Spend $' + c.min + ' or more for ' + v); coupon = v; sync(); return toast(v + ' applied'); }
+  if ($c('#capply')) return applyCoupon($('#cin').value);
+  if ($c('#crm')) { coupon = null; sync(); return toast('Coupon removed'); }
   if ($c('#prev')) return $('#rail').scrollBy({ left: -300, behavior: 'smooth' });
   if ($c('#next')) return $('#rail').scrollBy({ left: 300, behavior: 'smooth' });
 });
-document.addEventListener('keydown', e => e.key === 'Escape' && closeAll());
+document.addEventListener('keydown', e => { if (e.key === 'Escape') return closeAll(); if (e.key === 'Enter' && e.target.id === 'cin') { e.preventDefault(); applyCoupon(e.target.value); } });
 $('#sort').onchange = e => { st.sort = e.target.value; renderGrid(); };
 $('#q').oninput = e => {
   clearTimeout(timer); const q = e.target.value.trim();
@@ -267,3 +297,5 @@ function restore() {
   if (back !== 'home') lenis.scrollTo('#' + back, { immediate: true, offset: -60 });
   if (loaded) back = null;
 }
+
+document.addEventListener('input', e => { if (e.target.id === 'cin') couponMsg('', ''); });
